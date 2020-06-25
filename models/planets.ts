@@ -36,6 +36,7 @@ async function loadPlanetsData() {
     
     return planets.map(planet => {
         return pick(planet, [
+            "kepler_name",
             "koi_prad",
             "koi_smass",
             "koi_srad",

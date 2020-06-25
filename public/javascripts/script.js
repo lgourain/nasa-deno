@@ -19,12 +19,15 @@ function loadLaunches() {
   // Load launches and sort by flight number.
 }
 
-function loadPlanets() {
+async function loadPlanets() {
   // TODO: Once API is ready.
-  // const planetSelector = document.getElementById("planets-selector");
-  // planets.forEach((planet) => {
-  //   planetSelector.innerHTML += `<option value="${planet.kepler_name}">${planet.kepler_name}</option>`;
-  // });
+  const res = await fetch("/planets");
+  const planets = await res.json();
+  
+  const planetSelector = document.getElementById("planets-selector");
+  planets.forEach((planet) => {
+    planetSelector.innerHTML += `<option value="${planet.kepler_name}">${planet.kepler_name}</option>`;
+  });
 }
 
 function abortLaunch() {
