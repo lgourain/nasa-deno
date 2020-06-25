@@ -1,4 +1,5 @@
 import { Application, send } from "https://deno.land/x/oak@v5.0.0/mod.ts";
+import api from "./api.ts";
 
 const app = new Application();
 const PORT = 8000;
@@ -16,6 +17,8 @@ app.use(async (ctx, next) => {
     ctx.response.headers.set("X-Response-Time", `${delta}ms`);
 });
 
+app.use(api.routes());
+
 app.use(async (ctx) => {
     const filePath = ctx.request.url.pathname;
     const fileWhitelist = [
@@ -24,15 +27,11 @@ app.use(async (ctx) => {
         "/stylesheets/style.css",
         "/images/favicon.png",
     ];
-    if fileWhitelist.includes(filePath)) {
+    if (fileWhitelist.includes(filePath)) {
         await send(ctx, filePath, {
             root: `${Deno.cwd()}/public`,
         });
-    } 
-});
-
-app.use((ctx) => {
-    ctx.response.body = "Mission Control API";
+    }
 });
 
 if (import.meta.main) {
