@@ -16,4 +16,15 @@ router.get("/launches", (ctx) => {
     ctx.response.body = launches.getAll();
 });
 
+router.get("/launches/:id", (ctx) => {
+    if (ctx.params?.id) {
+        const launch = launches.getOne(Number(ctx.params.id));
+        if (launch) {
+            ctx.response.body = launch;
+        } else {
+            ctx.throw(400, "Launch with that ID doesn't exist");
+        }
+    }
+});
+
 export default router;
