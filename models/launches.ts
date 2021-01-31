@@ -68,3 +68,13 @@ export function addOne(data: Launch) {
         customers: ["NASA"],
     });
 }
+
+export function removeOne(id: number) {
+    const aborted = launches.get(id);
+    if (aborted) {
+        aborted.upcoming = false;
+        aborted.success = false;
+    }
+
+    return aborted;
+}
