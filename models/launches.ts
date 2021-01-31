@@ -60,3 +60,11 @@ export function getOne(id: number) {
 
     return null;
 }
+
+export function addOne(data: Launch) {
+    launches.set(data.flightNumber, {
+        ...data,
+        upcoming: true,
+        customers: ["NASA"],
+    });
+}

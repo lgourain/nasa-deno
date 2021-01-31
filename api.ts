@@ -27,4 +27,14 @@ router.get("/launches/:id", (ctx) => {
     }
 });
 
+router.post("/launches", async (ctx) => {
+    const body = await ctx.request.body();
+    const content = await body.value;
+
+    launches.addOne(content);
+
+    ctx.response.body = { success: true };
+    ctx.response.status = 201;
+});
+
 export default router;
