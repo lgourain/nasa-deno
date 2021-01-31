@@ -1,4 +1,4 @@
-import { Application, send } from "https://deno.land/x/oak@v5.0.0/mod.ts";
+import { Application, send } from "https://deno.land/x/oak@v6.5.0/mod.ts";
 import api from "./api.ts";
 
 const app = new Application();
